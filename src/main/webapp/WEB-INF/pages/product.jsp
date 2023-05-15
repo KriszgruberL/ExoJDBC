@@ -72,13 +72,16 @@
             <div class="modal-body">
                 <h3 class="text-center"> Are you sure ?</h3>
             </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No </button>
-                <button type="button" class="btn btn-dark">Yes !</button>
-            </div>
+            <form class="modal-footer">
+                <button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">No</button>
+                <form class="modal-footer" method="post" action="deleteProduct">
+                <button type="submit" class="btn btn-dark">Yes !</button>
+                </form>
+            </form>
         </div>
     </div>
 </div>
+
 
 
 <div class="modal fade" id="modifyModal" tabindex="-1" aria-labelledby="modifyModalLabel" aria-hidden="true">
