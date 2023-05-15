@@ -27,7 +27,6 @@
 <div class="container">
     <button class="btn btn-dark" type="button" data-bs-toggle="modal"
             data-bs-target="#addModal">
-        <a href=""
         Add a product
     </button>
     <br>
