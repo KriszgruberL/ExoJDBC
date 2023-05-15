@@ -26,12 +26,14 @@ public class ProductForm {
         this.typeId = typeId;
     }
 
-    public ProductForm(String nameProduct, String description, Integer quantity, String typeName) {
+    public ProductForm(String nameProduct, String description, Integer quantity, TypeForm typeForm) {
         this.nameProduct = nameProduct;
         this.description = description;
         this.quantity = quantity;
-        this.typeName = typeName;
+        this.typeForm = typeForm;
     }
+
+
     public Product toEntity() {
         Type type = getTypeForm() == null ? null : getTypeForm().toEntity();
 
@@ -40,7 +42,7 @@ public class ProductForm {
                 .description(getDescription())
                 .quantity(getQuantity())
                 .typeId(getTypeId())
-                .typeName(getTypeName())
+                .typeName(type)
                 .build();
     }
 }
