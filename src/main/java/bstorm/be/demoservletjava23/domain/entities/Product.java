@@ -7,20 +7,30 @@ import lombok.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
+@EqualsAndHashCode
 public class Product {
 
         private Integer id;
 
         private String nameProduct;
         private String description;
-        private String type;
         private Integer quantity;
 
-    public Product(String nameProduct, String description, String type, Integer quantity) {
+        private Integer typeId;
+        private Type typeName;
+
+    public Product(String nameProduct, String description, Integer quantity, Integer typeId) {
         this.nameProduct = nameProduct;
         this.description = description;
-        this.type = type;
         this.quantity = quantity;
+        this.typeId = typeId;
+    }
 
+    public Product(String nameProduct, String description, Integer quantity, Type typeName) {
+        this.nameProduct = nameProduct;
+        this.description = description;
+        this.quantity = quantity;
+        this.typeName = typeName;
     }
 }

@@ -31,7 +31,7 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css
         <label for="confirmPassword">Confirm password : </label>
         <input type="password" id="confirmPassword" name="confirmPassword">
         <span style="color: red">${errorMessage}</span>
-        <button type="submit">Register</button>
+        <button class="btn btn-dark" type="submit">Register</button>
     </form>
 </body>
 </html>

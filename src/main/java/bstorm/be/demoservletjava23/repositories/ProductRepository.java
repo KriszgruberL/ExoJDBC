@@ -4,6 +4,6 @@ import bstorm.be.demoservletjava23.domain.entities.Product;
 
 public interface ProductRepository extends BaseRepository<Product> {
 
-    Product findByNameType(String search);
+    Product findByName(String search);
 
 }

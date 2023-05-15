@@ -22,7 +22,6 @@ public class ProductRepositoryImpl extends BaseRepositoryImpl<Product> implement
                     .id(rs.getInt("PRODUCT_ID"))
                     .nameProduct(rs.getString("NAME"))
                     .description(rs.getString("DESCRIPTION"))
-                    .type(rs.getString("TYPE"))
                     .quantity(rs.getInt("QUANTITY"))
                     .build();
         } catch (SQLException e) {
@@ -33,13 +32,13 @@ public class ProductRepositoryImpl extends BaseRepositoryImpl<Product> implement
     @Override
     public Product add(Product product) {
         try {
-            Connection conn = DatabaseConnectionManager.getConnection();
-            PreparedStatement psmt = conn.prepareStatement("INSERT INTO PRODUCT(NAME,DESCRIPTION, TYPE,QUANTITY) " +
-                    "VALUES(?,?,?) RETURNING *");
+            Connection conn = DatabaseConnectionManager.openConnection();
+            PreparedStatement psmt = conn.prepareStatement("INSERT INTO PRODUCT(NAME,DESCRIPTION,QUANTITY, TYPE_ID) " +
+                    "VALUES(?,?,?,?) RETURNING *");
             psmt.setString(1, product.getNameProduct());
             psmt.setString(2, product.getDescription());
-            psmt.setString(3, product.getType());
-            psmt.setInt(4, product.getQuantity());
+            psmt.setInt(3, product.getQuantity());
+            psmt.setInt(4, product.getTypeId());
 
             ResultSet rs = psmt.executeQuery();
 
@@ -56,17 +55,15 @@ public class ProductRepositoryImpl extends BaseRepositoryImpl<Product> implement
     @Override
     public boolean update(Integer id, Product product) {
         try {
-            Connection conn = DatabaseConnectionManager.getConnection();
+            Connection conn = DatabaseConnectionManager.openConnection();
             PreparedStatement psmt = conn.prepareStatement("UPDATE PRODUCTS " +
                     "SET NAME = ?," +
                     "DESCRIPTION = ?,"+
-                    "TYPE = ?, " +
                     "QUANTITY = ? " +
                     "WHERE PRODUCT_ID = ?");
             psmt.setString(1, product.getNameProduct());
             psmt.setString(2, product.getDescription());
-            psmt.setString(3, product.getType());
-            psmt.setInt(4, product.getQuantity());
+            psmt.setInt(3, product.getQuantity());
             psmt.setInt(5,id);
 
             int nbRows = psmt.executeUpdate();
@@ -81,12 +78,11 @@ public class ProductRepositoryImpl extends BaseRepositoryImpl<Product> implement
     }
 
     @Override
-    public Product findByNameType(String search) {
+    public Product findByName(String search) {
         try {
-            Connection conn = DatabaseConnectionManager.getConnection();
-            PreparedStatement psmt = conn.prepareStatement("SELECT * FROM PRODUCT WHERE NAME = ? OR TYPE = ?");
+            Connection conn = DatabaseConnectionManager.openConnection();
+            PreparedStatement psmt = conn.prepareStatement("SELECT * FROM PRODUCT WHERE NAME = ?");
             psmt.setString(1,search);
-            psmt.setString(2,search);
 
             ResultSet rs = psmt.executeQuery();
 

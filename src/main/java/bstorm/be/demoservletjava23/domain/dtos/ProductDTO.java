@@ -37,8 +37,7 @@ public class ProductDTO {
         return ProductDTO.builder()
                 .id(product.getId())
                 .nameProduct(product.getNameProduct())
-                .description(product.getDescription())
-                .type(product.getType())
+                .description(description)
                 .build();
     }
 }

@@ -27,7 +27,7 @@ https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css
         <label for="password">Password : </label>
         <input type="password" id="password" name="password">
         <span style="color: red">${errorMessage}</span>
-        <button type="submit">Connect</button>
+        <button class="btn btn-dark" type="submit">Connect</button>
     </form>
 
 </body>
